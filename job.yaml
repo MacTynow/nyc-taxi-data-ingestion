@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ingestor
+spec:
+  template:
+    metadata:
+      labels:
+        app: ingestor
+    spec:
+      containers:
+      - name: ingestor
+        image: mactynow/nyc-taxi-data-ingestion:latest
+        imagePullPolicy: Always
+        env: 
+          - name: KAFKA_BROKERS
+            value: famous-gerbil-kf:9092
+          - name: KAFKA_TOPIC
+            value: test
+        resources:
+          limits:
+            cpu: 100m
+            memory: 2G
+          requests:
+            cpu: 100m
+            memory: 2G
+      restartPolicy: Never

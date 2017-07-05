@@ -1,0 +1,20 @@
+# Default values for nyc-taxi-data-ingestion.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+  repository: mactynow/nyc-taxi-data-ingestion
+  tag: latest
+  pullPolicy: Always
+resources:
+  limits:
+    cpu: 1
+    memory: 2G
+  requests:
+    cpu: 1
+    memory: 2G
+config:
+  kafka-brokers: localhost:9092
+  kafka-topic: test
+
+
