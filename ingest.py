@@ -5,8 +5,8 @@ import json
 from pykafka import KafkaClient
 
 sample_file = "https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-01.csv"
-# kafka_brokers = os.getenv("KAFKA_BROKERS", "localhost:9092")
-# kafka_topic = os.getenv("KAFKA_TOPIC", "test")
+kafka_brokers = os.getenv("KAFKA_BROKERS", "localhost:9092")
+kafka_topic = os.getenv("KAFKA_TOPIC", "test")
 
 if not os.path.isfile(sample_file):
   url = sample_file
@@ -21,5 +21,4 @@ if not os.path.isfile(sample_file):
     data["dropoff_long"] = line.split(",")[9]
     data["dropoff_lat"] = line.split(",")[10]
     json_data = json.dumps(data)
-    print json_data
-    # producer.produce(json_data)
+    producer.produce(json_data)
