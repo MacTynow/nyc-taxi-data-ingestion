@@ -16,12 +16,12 @@ spec:
           - name: KAFKA_BROKERS
             value: famous-gerbil-kf:9092
           - name: KAFKA_TOPIC
-            value: test
+            value: pickup
         resources:
           limits:
-            cpu: 100m
+            cpu: 1
             memory: 2G
           requests:
-            cpu: 100m
+            cpu: 1
             memory: 2G
       restartPolicy: Never
