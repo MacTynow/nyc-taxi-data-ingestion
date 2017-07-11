@@ -17,12 +17,13 @@ if not os.path.isfile(sample_file):
   response = requests.get(url, stream=True)
 
   for line in response.iter_lines():
-    data = {}
-    data["pickup_time"] = line.split(",")[1]
-    data["dropoff_time"] = line.split(",")[2]
-    data["pickup_long"] = line.split(",")[5]
-    data["pickup_lat"] = line.split(",")[6]
-    data["dropoff_long"] = line.split(",")[9]
-    data["dropoff_lat"] = line.split(",")[10]
-    json_data = json.dumps(data)
-    producer.produce(json_data)
+    if len(line) > 10:
+      data = {}
+      data["pickup_time"] = line.split(",")[1]
+      data["dropoff_time"] = line.split(",")[2]
+      data["pickup_long"] = line.split(",")[5]
+      data["pickup_lat"] = line.split(",")[6]
+      data["dropoff_long"] = line.split(",")[9]
+      data["dropoff_lat"] = line.split(",")[10]
+      json_data = json.dumps(data)
+      producer.produce(json_data)
